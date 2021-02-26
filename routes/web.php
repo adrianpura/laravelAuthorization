@@ -15,6 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+auth()->loginUsingId(36);
+
+
 
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -28,3 +31,9 @@ Route::post('best-replies/{reply}', 'ConversationBestReplyController@store');
 
 
 Auth::routes();
+
+
+
+Route::get('/reports', function () {
+    return "the secret reports";
+})->middleware('can:view_reports');

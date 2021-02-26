@@ -27,10 +27,15 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::before(function (User $user){
-                if($user->id === 36){ //admin
-                    return true;
-                }
+//        Gate::before(function (User $user){
+//                if($user->id === 36){ //admin
+//                    return true;
+//                }
+//        });
+
+        Gate::before(function ($user,$ability){
+            return $user->abilities()->contains($ability);
         });
+
     }
 }
